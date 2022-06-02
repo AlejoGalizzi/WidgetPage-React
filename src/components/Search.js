@@ -30,6 +30,22 @@ const Search = () => {
     setTerm(event.target.value)
     
   }
+
+  const renderedResults = results.map((result) => {
+    return (
+      <div className="item segment" key={result.pageid}>
+        <div className="content">
+          <div className="header">
+            {result.title}
+          </div>
+          <div className="description">
+            <span dangerouslySetInnerHTML={{__html: result.snippet}}></span>
+          </div>
+        </div>
+      </div>
+    );
+  })
+
   return (
     <div className="ui container">
       <div className="ui form">
@@ -43,8 +59,8 @@ const Search = () => {
           />
         </div>
       </div>
-      <div >
-
+      <div className="ui celled list">
+        {renderedResults}
       </div>
     </div>
   );

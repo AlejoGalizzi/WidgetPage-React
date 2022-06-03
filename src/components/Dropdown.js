@@ -6,18 +6,19 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
 
   useEffect(() => {
     const onBodyClick = (event) => {
-      if (ref.current.contains(event.target)) {
+      if (ref.current && ref.current.contains(event.target)) {
         return;
       }
       //This if check if the event target is inside the ref of ui form. If it is inside, the event don't call the setOpen of the body.
       //If the target is in the body (when you click in anywhere from the form), this if do not execute and it call the setOpen.
       setOpen(false);
-    }
-    document.addEventListener("click",onBodyClick,{capture: true});
+    };
+    document.addEventListener("click", onBodyClick, { capture: true });
     return () => {
-      document.body.removeEventListener("click",onBodyClick, {capture: true});
-    }
-
+      document.body.removeEventListener("click", onBodyClick, {
+        capture: true,
+      });
+    };
   }, []);
 
   const renderedOptions = options.map((option) => {

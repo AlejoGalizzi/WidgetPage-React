@@ -2,8 +2,19 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 const Search = () => {
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState('programming');
   const [results,setResults] = useState([]);
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term);
+    },1000);
+
+    return () => {
+      clearTimeout(timerId)
+    }
+  },[term])
 
   useEffect(() => {
     const search = async () => {
@@ -13,23 +24,13 @@ const Search = () => {
         list: 'search',
         origin: '*',
         format: 'json',
-        srsearch: term
+        srsearch: debouncedTerm
         }
       });
       setResults(data.query.search);
     };
-
-    const timeoutId = setTimeout(() => {
-      if(term){
-        search();
-      }
-    }, 1000);
-    
-    return () => {
-      clearTimeout(timeoutId);
-    }
-
-  },[term]);
+    search();
+  },[debouncedTerm]);
 
   const onFormChange = (event) => {
     event.preventDefault();

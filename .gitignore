@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /.vscode
-
+/src/api
 # testing
 /coverage
 

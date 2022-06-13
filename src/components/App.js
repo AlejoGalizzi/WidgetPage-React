@@ -5,7 +5,7 @@ import Dropdown from "./Dropdown";
 import Translate from "./Translate";
 import Route from "./Route";
 import Header from "./Header";
-
+const dotenv = require('dotenv').config()
 
 const items = [
   {

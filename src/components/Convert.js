@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import KEY from "../api/key";
 
 const Convert = ({ language, text }) => {
   const [translated, setTranslated] = useState("");
